@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 #-*-coding:utf8;-*-
-# Junior Obom 26/12/17
-# Classe que vai carregar informações primárias para o Assistente
 
 import os
 import time
@@ -18,7 +16,7 @@ class Load():
     def __init__(self):
         pass
     
-    def carregar(self):
+    def carregarInformacoesIniciais(self):
         arq=Arquivo() 
 
         if(arq.lertudo()[1]==False): # Verifica existência do arquivo
@@ -26,9 +24,9 @@ class Load():
                     
         info=arq.lertudo()
         
-        return info # Retorno as informações do aqruivo de inicio
+        return info # Retorna as informações do aqruivo de inicio
     
-    def iniciar(self, info): # Faz a verificações iniciais
+    def iniciar(self, info): # Se for o primeiro uso solicita o cadatro do nome do usuário e IA, ao fim faz uma saudação
 
         self.nomeUsu=info[0] # O nome do usuário é a primeria linha do txt
         self.nomeIa=info[1] # O nome da IA é a segunda linha.

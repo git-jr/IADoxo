@@ -2,7 +2,7 @@
 # Junior Obom
 # 07/01/2018
 # Classificador de palavras, deve ser capaz de:
-# Normalizar palavras: Deixar palavrasem minúsculo para fácil análise
+# Normalizar palavras: Deixar palavras em minúsculo para fácil análise
 # Separar palavras
 # Conter um método que possar receber uma lista de frase/classe e ser treinado semelhante ao que encontramos no TextBlob porém funcional no Android
                                              
@@ -204,7 +204,7 @@ class Classificador(object):
         for sinal in operacao:
             for i in sinal:
                 if i in entrada:
-                    posiope=entrada.index(i) # Posição do sinal apra ajudar a indentficar os números da operação
+                    posiope=entrada.index(i) # Posição do sinal para ajudar a indentficar os números da operação
                     tamposiope=len(i)
                     
 

@@ -8,7 +8,7 @@
 from util import Voz
 from util import Arquivo
 from paciencia import Paciencia
-from classificador import Classificador
+from Classificador import Classificador
 from BuscaWeb import BuscaWeb
 
 class Chatbot():
