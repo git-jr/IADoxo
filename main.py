@@ -1,7 +1,7 @@
 # -*-coding:utf8;-*-
 
-from LoadAndroid import Load
-from Chatbot import Chatbot
+from loadAndroid import Load
+from chatbot import Chatbot
 from util import Voz
 from util import Log
 
@@ -11,6 +11,7 @@ load = Load()
 chatbor = Chatbot()
 
 infos = load.carregarInformacoesIniciais()
+
 
 modo_texto_ativo = False
 aprender = True

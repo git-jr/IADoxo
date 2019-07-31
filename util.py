@@ -7,7 +7,7 @@ import time
 import glob
 from androidhelper import sl4a
 import androidhelper as android
-from Classificador import Classificador
+from classificador import Classificador
 
 droid = android.Android()
 

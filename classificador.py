@@ -329,7 +329,7 @@ class Classificador(object):
             return saida
             
         if(na[0]==2): # Horas
-            cr=util.Cronos() 
+            cr=util.Cronos()
             saida=str("São "+str(cr.tempo()[1])+" e "+str(cr.tempo()[2])) # Saudação: Periodo do dia + Nome do usuário        
             return saida
             
@@ -340,14 +340,14 @@ class Classificador(object):
             return saida
 
         if(na[0]==4): # Excerrar IA
-            v=util.Voz() 
+            v=util.Voz()
             v.fale("Programa encerrado")
             print("Programa encerrado")
             exit()
             
         if(na[0]==5): # Abrir Apps
             
-            a=util.Apps() 
+            a=util.Apps()
             a.listarapps()
             listaapp=a.listaapps
                 
