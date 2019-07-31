@@ -8,8 +8,8 @@
 from util import Voz
 from util import Arquivo
 from paciencia import Paciencia
-from Classificador import Classificador
-from BuscaWeb import BuscaWeb
+from classificador import Classificador
+from buscaWeb import BuscaWeb
 
 class Chatbot():
     entradasrecentes=[]
