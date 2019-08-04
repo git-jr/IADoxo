@@ -12,7 +12,6 @@ chatbor = Chatbot()
 
 infos = load.carregarInformacoesIniciais()
 
-
 modo_texto_ativo = False
 aprender = True
 

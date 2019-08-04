@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*-coding:utf8;-*-
+# -*-coding:utf8;-*-
 
 import os
 import time
@@ -9,49 +9,48 @@ from androidhelper import sl4a
 import androidhelper as android
 
 
-
-class Load():
-    nomeUsu,nomeIa,first="","","" #Inicializando
+class Load:
+    nomeUsu, nomeIa, primeiroUso = "", "", ""  # Inicializando
 
     def __init__(self):
         pass
-    
+
     def carregarInformacoesIniciais(self):
-        arq=Arquivo() 
+        arquivo = Arquivo()
 
-        if(arq.lertudo()[1]==False): # Verifica existência do arquivo
-            arq.criar("/infos.txt") # Cria se não existir       
-                    
-        info=arq.lertudo()
-        
-        return info # Retorna as informações do aqruivo de inicio
-    
-    def iniciar(self, info): # Se for o primeiro uso solicita o cadatro do nome do usuário e IA, ao fim faz uma saudação
+        if not arquivo.lertudo()[1]:
+            arquivo.criar("/infos.txt")
 
-        self.nomeUsu=info[0] # O nome do usuário é a primeria linha do txt
-        self.nomeIa=info[1] # O nome da IA é a segunda linha.
-        self.first=str(info[2]) # "0" se for o primeiro uso da IA e "1" se não for
+        info = arquivo.lertudo()
+        return info
 
-        self.nomeUsu = self.nomeUsu [:-1] # Cuida do "\n" resultante de variavéis vindas a partir da leitura de arquivos txt
-        self.nomeIa = self.nomeIa [:-1]
-                
-        
-        if (("0"in self.first) or ("Obom" in self.nomeUsu)) : # Se for o primeiro acesso
+    def iniciar(self, info):
+        self.nomeUsu = info[0]  # Nome do usuário é a primeria linha do arquivo txt
+        self.nomeIa = info[1]
+        self.primeiroUso = str(info[2])  # "0" se for o primeiro uso da IA e "1" se não for
+
+        self.nomeUsu = self.nomeUsu[:-1]  # Retira o caractere "\n" gerado na leitura de arquivos txt
+        self.nomeIa = self.nomeIa[:-1]
+
+        if "0" in self.primeiroUso:
             droid = sl4a.Android()
-            self.nomeUsu=droid.dialogGetInput("Como devo lhe chamar? ","Insira seu nome").result
-            self.nomeIa=droid.dialogGetInput("Nome da IA","Insira um nome").result
+            self.nomeUsu, self.nomeIa = None, None
 
-            os.chdir(os.path.dirname(os.path.abspath(__file__))) # Aponta para o caminho da pasta da IA
-            caminho=os.getcwd()+"/infos.txt" # Monta o caminho do txt de infos
-        
+            while self.nomeUsu is None:
+                self.nomeUsu = droid.dialogGetInput("Como devo lhe chamar? ", "Insira seu nome").result
+
+            while self.nomeIa is None:
+                self.nomeIa = droid.dialogGetInput("Nome da IA", "Insira um nome").result
+
+            os.chdir(os.path.dirname(os.path.abspath(__file__)))  # Aponta para o caminho da pasta da IA
+            caminho = os.getcwd() + "/infos.txt"  # Monta o caminho do txt das informações
+
             arq = open(caminho, 'w')
-            arq.writelines(self.nomeUsu+"\n"+self.nomeIa+"\n"+"1 \n" ) # No caso seria 1,mas para testes é 0 por enquanto 
-            
-            arq.close()      
-        
-        
-        cr=Cronos() 
-        sd=str(cr.tempo()[0]+" "+self.nomeUsu) # Saudação: Periodo do dia + Nome do usuário
-        time.sleep(1) # Um leve delay para o carregamento dos arquivos
-        
-        return sd
+            arq.writelines(self.nomeUsu + "\n" + self.nomeIa + "\n" + "1 \n")
+            arq.close()
+
+        cronos = Cronos()
+        saudacao_gerada = str(cronos.tempo()[0] + " " + self.nomeUsu)  # Saudação: Periodo do dia + Nome do usuário
+        time.sleep(1)  # Um leve delay para o carregamento dos arquivos
+
+        return saudacao_gerada
